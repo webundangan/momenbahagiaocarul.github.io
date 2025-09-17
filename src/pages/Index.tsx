@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { WelcomeScreen } from "@/components/WelcomeScreen";
 import { WeddingNavigation } from "@/components/WeddingNavigation";
 import { WeddingHero } from "@/components/WeddingHero";
@@ -9,10 +9,28 @@ import { RSVPSection } from "@/components/RSVPSection";
 
 const Index = () => {
   const [showWelcome, setShowWelcome] = useState(true);
-  const guestName = "Bapak/Ibu/Saudara/i"; // This can be dynamic based on URL params
+  const [guestName, setGuestName] = useState("Bapak/Ibu/Saudara/i");
+
+  useEffect(() => {
+    // Ambil path setelah domain
+    const path = window.location.pathname.replace("/", "").trim();
+
+    if (path) {
+      // Ubah huruf pertama jadi kapital
+      const formattedName = decodeURIComponent(path)
+        .replace(/-/g, " ") // kalau ada strip jadi spasi
+        .replace(/\b\w/g, (c) => c.toUpperCase());
+      setGuestName(formattedName);
+    }
+  }, []);
 
   if (showWelcome) {
-    return <WelcomeScreen guestName={guestName} onEnter={() => setShowWelcome(false)} />;
+    return (
+      <WelcomeScreen
+        guestName={guestName}
+        onEnter={() => setShowWelcome(false)}
+      />
+    );
   }
 
   return (
@@ -33,7 +51,7 @@ const Index = () => {
       <section id="rsvp">
         <RSVPSection />
       </section>
-      
+
       {/* Footer */}
       <footer className="bg-muted py-12 text-center">
         <div className="max-w-4xl mx-auto px-6">
@@ -42,9 +60,10 @@ const Index = () => {
           </h3>
           <div className="bg-muted/50 rounded-2xl p-6 mb-6 border border-border/50">
             <p className="text-foreground/90 mb-4 italic font-medium">
-              "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu 
-              isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa 
-              tenteram kepadanya, dan dijadikan-Nya diantaramu rasa kasih dan sayang."
+              "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan
+              untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung
+              dan merasa tenteram kepadanya, dan dijadikan-Nya diantaramu rasa
+              kasih dan sayang."
             </p>
             <p className="text-sm text-muted-foreground font-medium">
               QS. Ar-Rum: 21
