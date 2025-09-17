@@ -17,7 +17,7 @@ export const CoupleStory = () => {
               <div className="w-32 h-32 mx-auto bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mb-4 romantic-glow">
                 <Heart className="w-12 h-12 text-white fill-white" />
               </div>
-              <h3 className="text-2xl font-bold text-foreground mb-2">Sarah</h3>
+              <h3 className="text-2xl font-bold text-foreground mb-2">Oca Rosita Anwari, S.Pd</h3>
               <p className="text-muted-foreground">
                 Seorang Guru yang mengajar dengan ketekunan dan penuh kasih sayang
               </p>
@@ -29,7 +29,7 @@ export const CoupleStory = () => {
               <div className="w-32 h-32 mx-auto bg-gradient-to-br from-accent to-primary rounded-full flex items-center justify-center mb-4 romantic-glow">
                 <Heart className="w-12 h-12 text-white fill-white" />
               </div>
-              <h3 className="text-2xl font-bold text-foreground mb-2">David</h3>
+              <h3 className="text-2xl font-bold text-foreground mb-2">Nurul Zaman, S.Pd</h3>
               <p className="text-muted-foreground">
                 Seorang guru dengan yang mengabdikan diri sehingga bertemu cinta sejati 
               </p>
