@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { WelcomeScreen } from "@/components/WelcomeScreen";
 import { WeddingNavigation } from "@/components/WeddingNavigation";
 import { WeddingHero } from "@/components/WeddingHero";
@@ -9,25 +10,20 @@ import { RSVPSection } from "@/components/RSVPSection";
 
 const Index = () => {
   const [showWelcome, setShowWelcome] = useState(true);
-  const [guestName, setGuestName] = useState("Bapak/Ibu/Saudara/i");
+  const { guestName } = useParams();
 
-  useEffect(() => {
-    // Ambil path setelah domain
-    const path = window.location.pathname.replace("/", "").trim();
-
-    if (path) {
-      // Ubah huruf pertama jadi kapital
-      const formattedName = decodeURIComponent(path)
-        .replace(/-/g, " ") // kalau ada strip jadi spasi
-        .replace(/\b\w/g, (c) => c.toUpperCase());
-      setGuestName(formattedName);
-    }
-  }, []);
+  // format nama: default kalau kosong
+  const formattedGuest =
+    guestName
+      ? decodeURIComponent(guestName)
+          .replace(/-/g, " ")
+          .replace(/\b\w/g, (c) => c.toUpperCase())
+      : "Bapak/Ibu/Saudara/i";
 
   if (showWelcome) {
     return (
       <WelcomeScreen
-        guestName={guestName}
+        guestName={formattedGuest}
         onEnter={() => setShowWelcome(false)}
       />
     );
@@ -52,7 +48,6 @@ const Index = () => {
         <RSVPSection />
       </section>
 
-      {/* Footer */}
       <footer className="bg-muted py-12 text-center">
         <div className="max-w-4xl mx-auto px-6">
           <h3 className="text-2xl font-playfair font-bold text-foreground mb-4">
