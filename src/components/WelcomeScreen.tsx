@@ -12,7 +12,7 @@ export const WelcomeScreen = ({ guestName, onEnter }: WelcomeScreenProps) => {
 
   const handleEnter = () => {
     // Play background music
-    const audio = new Audio("/wedding-music.mp3");
+    const audio = new Audio("/a-thousand-years-official-music-video.mp3");
     audio.loop = true;
     audio.volume = 0.3;
     audio.play().catch(console.error);
